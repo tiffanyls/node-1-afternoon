@@ -15,7 +15,7 @@ const read = (req, res, next ) => {
 const update = (req, res, next) => {
     const {text} = req.body;
     const updateID = req.params.id;
-    const messageIndex = messages.findIndex (message => message.id === updateID);
+    const messageIndex = messages.findIndex (message => message.id == updateID);
     let message = messages[ messageIndex ];
     
     messages[ messageIndex ] = {
@@ -26,9 +26,9 @@ const update = (req, res, next) => {
     res.json(messages);
 };
 
-const delete = (req, res, next) => {
+const destroy = (req, res, next) => {
     const deleteID = req.params.id;
-    messageIndex = messages.findIndex ( message => message.id === deleteID);
+    messageIndex = messages.findIndex ( message => message.id == deleteID);
     messages.splice(messageIndex, 1);
     res.json(messages);
 };
@@ -36,6 +36,6 @@ const delete = (req, res, next) => {
 module.exports = {
     create,
     read,
-    udate,
-    destory
+    update,
+    destroy
 };

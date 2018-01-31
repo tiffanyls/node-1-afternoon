@@ -1,12 +1,14 @@
 const express=require("express");
 const bodyParser=require("body-parser");
-const messages=require("messages");
+const messages=require("./controllers/messages_controller");
 
 const port = 3000;
 
 const app = express();
 
-app.use(body.Parser.json());
+app.use(bodyParser.json());
+app.use( express.static( __dirname + '/../public/build' ) );
+
 
 const { read, create, update, destroy } = require('./controllers/messages_controller');
 
@@ -16,5 +18,5 @@ app.put("/api/messages/:id", update);
 app.delete("/api/messages/:id", destroy);
 
 app.listen(port, () => {
-    console.log("Listening on Port: ${port}");
+    console.log(`Listening on Port: ${port}`);
 })
